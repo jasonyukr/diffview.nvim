@@ -90,6 +90,22 @@ function StandardView:post_layout()
     }
   end
 
+  // Hack the highlight mapping
+  if config.get_config().enhanced_diff_hl then
+    self.winopts.diff2.a.winhl = {
+      "DiffAdd:DiffviewDiffAddLeft",
+      "DiffDelete:DiffviewDiffDeleteLeft",
+      "DiffChange:DiffviewDiffChangeLeft",
+      "DiffText:DiffviewDiffTextLeft",
+    }
+    self.winopts.diff2.b.winhl = {
+      "DiffAdd:DiffviewDiffAddRight",
+      "DiffDelete:DiffviewDiffDeleteRight",
+      "DiffChange:DiffviewDiffChangeRight",
+      "DiffText:DiffviewDiffTextRight",
+    }
+  end
+
   DiffviewGlobal.emitter:emit("view_post_layout", self)
 end
 
